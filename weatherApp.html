@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://kit.fontawesome.com/190a46c377.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Nunito:wght@200;300;400;500;600;700;800;900;1000&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>⛅️ Weather App</title>
+
+    <link rel="stylesheet" href="CSS/style.css" />
+  </head>
+  <body>
+    <div class="container my-container">
+      <!-- First row header------------------------------------------------------------------->
+      <div class="row">
+        <div class="col-6">
+          <h1>--</h1>
+          <h5>United States</h5>
+        </div>
+        <div class="col-6">
+          <div class="d-flex flex-row-reverse">
+            <div>
+              <button
+                type="button"
+                class="btn btn-outline-secondary"
+                id="geolocation"
+              >
+                <i class="fa-solid fa-location-arrow"></i>
+              </button>
+            </div>
+            <div class="m-1"></div>
+            <div>
+              <form id="search-form">
+                <div class="input-group mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Search"
+                    id="city-request"
+                  />
+                  <button class="btn btn-outline-secondary" type="submit">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Second row----------------------------------------------------------------------------- -->
+      <div class="row">
+        <h5 class="current-date" id="current-date">Thu 10 November</h5>
+      </div>
+      <!-- Third row------------------------------------------------------------------------------ -->
+      <div class="row mb-4">
+        <div class="col-3">
+          <i class="fa-solid fa-sun current-weather-pic"></i>
+        </div>
+        <div class="col-3">
+          <p class="current-temperature">
+            <span id="temp-digits">--</span>
+            <span class="metric-imperial-system"
+              ><span id="celsius"
+                ><a href="#" class="active-temperature">ºC </a></span
+              >|<span id="fahrenheit"><a href="#"> ºF</a></span></span
+            >
+          </p>
+          <p id="weather-description">--</p>
+        </div>
+
+        <div class="col-2 text-center">
+          <strong><span id="high-temp">--</span>ºC</strong
+          ><br />High<br /><br />
+          <strong><span id="low-temp">--</span>ºC</strong><br />Low
+        </div>
+        <div class="col-2 text-center">
+          <strong><span id="wind">--</span> mph</strong><br />Wind<br /><br />
+          <strong><span id="rain">--</span>%</strong><br />Rain
+        </div>
+        <div class="col-2 text-center">
+          <strong id="sunrise">--</strong><br />Sunrise<br /><br />
+          <strong id="sunset">--</strong><br />Sunset
+        </div>
+      </div>
+      <!-- Forth row-------------------------------------------------------------------------------- -->
+      <div class="row">
+        <div class="col-sm-2">
+          <ul>
+            <li>Fri</li>
+            <li><i class="fa-solid fa-cloud-sun"></i></li>
+            <li>16º</li>
+          </ul>
+        </div>
+        <div class="col-sm-2">
+          <ul>
+            <li>Sat</li>
+            <li><i class="fa-solid fa-sun"></i></li>
+            <li>4º</li>
+          </ul>
+        </div>
+        <div class="col-sm-2">
+          <ul>
+            <li>Sun</li>
+            <li><i class="fa-solid fa-cloud-showers-heavy"></i></li>
+            <li>4º</li>
+          </ul>
+        </div>
+        <div class="col-sm-2">
+          <ul>
+            <li>Mon</li>
+            <li><i class="fa-solid fa-cloud-sun"></i></li>
+            <li>5º</li>
+          </ul>
+        </div>
+        <div class="col-sm-2">
+          <ul>
+            <li>Tue</li>
+            <li><i class="fa-solid fa-sun"></i></li>
+            <li>5º</li>
+          </ul>
+        </div>
+        <div class="col-sm-2">
+          <ul>
+            <li>Wed</li>
+            <li><i class="fa-solid fa-cloud-rain"></i></li>
+            <li>6º</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <script src="JS/weatherApp.js"></script>
+  </body>
+</html>

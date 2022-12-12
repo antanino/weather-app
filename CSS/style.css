@@ -1,0 +1,53 @@
+body {
+  opacity: 0.8;
+  font-family: "Nunito", sans-serif;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  border-radius: 10px;
+  background-color: #cfd2cf;
+  margin: 0;
+}
+
+li {
+  text-align: center;
+  display: list-item;
+  margin: 0 auto;
+  padding: 5px;
+}
+.current-date {
+  margin: 20px 0 20px 0;
+}
+
+.current-weather-pic {
+  font-size: 130px;
+}
+
+.current-temperature {
+  font-size: 40px;
+  margin-bottom: 0;
+  line-height: 0.9;
+}
+
+.metric-imperial-system {
+  font-size: 20px;
+}
+
+.metric-imperial-system a {
+  text-decoration: none;
+  color: black;
+  opacity: 0.8;
+}
+
+.active-temperature {
+  font-weight: 700;
+}
+.my-container {
+  max-width: 700px;
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+}
