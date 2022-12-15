@@ -6,9 +6,9 @@ body {
 ul {
   list-style-type: none;
   padding: 0;
+  margin: 0;
   border-radius: 10px;
   background-color: #cfd2cf;
-  margin: 0;
 }
 
 li {
@@ -32,7 +32,9 @@ li {
 }
 
 .metric-imperial-system {
-  font-size: 20px;
+  font-size: 16px;
+  position: relative;
+  top: -16px;
 }
 
 .metric-imperial-system a {
