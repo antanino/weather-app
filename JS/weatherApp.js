@@ -1,6 +1,8 @@
 // Current date and time
 
-function formatDate(date) {
+function formatDate(unixTimestamp) {
+  let date = new Date(unixTimestamp);
+
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   let dayOfWeek = days[date.getDay()];
 
@@ -43,10 +45,6 @@ function formatDate(date) {
 
   return `${dayOfWeek} ${dayOfMonth} ${month}, ${hoursString}:${minutesString}`;
 }
-
-let now = new Date();
-let h5 = document.querySelector("#current-date");
-h5.innerHTML = formatDate(now);
 
 // Submit city button listener
 
@@ -104,6 +102,9 @@ celsius.addEventListener("click", changeToCelsius);
 function showTemperature(response) {
   let h1 = document.querySelector("h1");
   h1.innerHTML = response.data.name;
+
+  let dateElement = document.querySelector("#current-date");
+  dateElement.innerHTML = formatDate(response.data.dt * 1000);
 
   let currentTemp = document.querySelector("#temp-digits");
   currentTemp.innerHTML = Math.round(response.data.main.temp);
