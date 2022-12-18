@@ -1,5 +1,26 @@
-// Current date and time
+// Wheather icons
+const weatherIcons = {
+  "01d": "fa-solid fa-sun",
+  "01n": "fa-solid fa-moon",
+  "02d": "fa-solid fa-cloud-sun",
+  "02n": "fa-solid fa-cloud-moon",
+  "03d": "fa-solid fa-cloud",
+  "03n": "fa-solid fa-cloud",
+  "04d": "fa-solid fa-cloud",
+  "04n": "fa-solid fa-cloud",
+  "09d": "fa-solid fa-cloud-rain",
+  "09n": "fa-solid fa-cloud-rain",
+  "10d": "fa-solid fa-cloud-showers-heavy",
+  "10n": "fa-solid fa-cloud-showers-heavy",
+  "11d": "fa-solid fa-cloud-bolt",
+  "11n": "fa-solid fa-cloud-bolt",
+  "13d": "fa-solid fa-snowflake",
+  "13n": "fa-solid fa-snowflake",
+  "50d": "fa-solid fa-smog",
+  "50n": "fa-solid fa-smog",
+};
 
+// Current date and time
 function formatDate(unixTimestamp) {
   let date = new Date(unixTimestamp);
 
@@ -100,11 +121,18 @@ celsius.addEventListener("click", changeToCelsius);
 // Weather elements
 
 function showTemperature(response) {
+  console.log(response.data);
   let h1 = document.querySelector("h1");
   h1.innerHTML = response.data.name;
 
   let dateElement = document.querySelector("#current-date");
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
+
+  let iconElement = document.querySelector("#icon");
+  iconElement.setAttribute(
+    "class",
+    weatherIcons[response.data.weather[0].icon]
+  );
 
   let currentTemp = document.querySelector("#temp-digits");
   currentTemp.innerHTML = Math.round(response.data.main.temp);
