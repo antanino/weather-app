@@ -49,6 +49,7 @@ p:first-letter {
 
 .active-temperature {
   font-weight: 700;
+  cursor: default;
 }
 .my-container {
   max-width: 700px;
