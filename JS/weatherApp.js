@@ -92,9 +92,9 @@ function cToF(celsius) {
   let fahrenheit = Math.round((celsius * 9) / 5 + 32);
   return fahrenheit;
 }
-function changeToFahrenheit(event) {
-  let tempSpan = document.querySelector("#temp-digits");
-  tempSpan.innerHTML = cToF(temperatureC);
+function displayFahrenheitTemp(event) {
+  let tempElement = document.querySelector("#temp-digits");
+  tempElement.innerHTML = cToF(temperatureC);
   let fahrenheitElement = document.querySelector("#fahrenheit a");
   fahrenheitElement.classList.add("active-temperature");
   let celsiusElement = document.querySelector("#celsius a");
@@ -102,11 +102,11 @@ function changeToFahrenheit(event) {
 }
 
 let fahr = document.querySelector("#fahrenheit");
-fahr.addEventListener("click", changeToFahrenheit);
+fahr.addEventListener("click", displayFahrenheitTemp);
 
-let temperatureC = 23;
+let temperatureC = null;
 
-function changeToCelsius(event) {
+function displayCelsiusTemp(event) {
   let tempSpan = document.querySelector("#temp-digits");
   tempSpan.innerHTML = temperatureC;
   let celsiusElement = document.querySelector("#celsius a");
@@ -116,7 +116,7 @@ function changeToCelsius(event) {
 }
 
 let celsius = document.querySelector("#celsius");
-celsius.addEventListener("click", changeToCelsius);
+celsius.addEventListener("click", displayCelsiusTemp);
 
 // Weather elements
 
@@ -134,8 +134,10 @@ function showTemperature(response) {
     weatherIcons[response.data.weather[0].icon]
   );
 
+  temperatureC = Math.round(response.data.main.temp);
+
   let currentTemp = document.querySelector("#temp-digits");
-  currentTemp.innerHTML = Math.round(response.data.main.temp);
+  currentTemp.innerHTML = temperatureC;
 
   let currentDescription = document.querySelector("#weather-description");
   currentDescription.innerHTML = response.data.weather[0].description;
