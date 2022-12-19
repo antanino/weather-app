@@ -81,7 +81,11 @@ function submitCity(event) {
   event.preventDefault();
   let searchInput = document.querySelector("#city-request");
   let city = searchInput.value;
-  searchCity(city);
+  if (city === "") {
+    alert("Please, type a city name...");
+  } else {
+    searchCity(city);
+  }
 }
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", submitCity);
@@ -95,6 +99,13 @@ function cToF(celsius) {
 function displayFahrenheitTemp(event) {
   let tempElement = document.querySelector("#temp-digits");
   tempElement.innerHTML = cToF(temperatureC);
+
+  let tempElementHigh = document.querySelector("#high-temp");
+  tempElementHigh.innerHTML = cToF(temperatureCelsiusHigh);
+
+  let tempElementLow = document.querySelector("#low-temp");
+  tempElementLow.innerHTML = cToF(temperatureCelsiusLow);
+
   let fahrenheitElement = document.querySelector("#fahrenheit a");
   fahrenheitElement.classList.add("active-temperature");
   let celsiusElement = document.querySelector("#celsius a");
@@ -105,10 +116,19 @@ let fahr = document.querySelector("#fahrenheit");
 fahr.addEventListener("click", displayFahrenheitTemp);
 
 let temperatureC = null;
+let temperatureCelsiusHigh = null;
+let temperatureCelsiusLow = null;
 
 function displayCelsiusTemp(event) {
-  let tempSpan = document.querySelector("#temp-digits");
-  tempSpan.innerHTML = temperatureC;
+  let tempElement = document.querySelector("#temp-digits");
+  tempElement.innerHTML = temperatureC;
+
+  let tempElementHigh = document.querySelector("#high-temp");
+  tempElementHigh.innerHTML = temperatureCelsiusHigh;
+
+  let tempElementLow = document.querySelector("#low-temp");
+  tempElementLow.innerHTML = temperatureCelsiusLow;
+
   let celsiusElement = document.querySelector("#celsius a");
   celsiusElement.classList.add("active-temperature");
   let fahrenheitElement = document.querySelector("#fahrenheit a");
@@ -124,6 +144,9 @@ function showTemperature(response) {
   console.log(response.data);
   let h1 = document.querySelector("h1");
   h1.innerHTML = response.data.name;
+
+  let countryElement = document.querySelector("#country");
+  countryElement.innerHTML = response.data.sys.country;
 
   let dateElement = document.querySelector("#current-date");
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
@@ -142,14 +165,21 @@ function showTemperature(response) {
   let currentDescription = document.querySelector("#weather-description");
   currentDescription.innerHTML = response.data.weather[0].description;
 
+  temperatureCelsiusHigh = Math.round(response.data.main.temp_max);
+
   let currentTempMax = document.querySelector("#high-temp");
-  currentTempMax.innerHTML = Math.round(response.data.main.temp_max);
+  currentTempMax.innerHTML = temperatureCelsiusHigh;
+
+  temperatureCelsiusLow = Math.round(response.data.main.temp_min);
 
   let currentTempMin = document.querySelector("#low-temp");
-  currentTempMin.innerHTML = Math.round(response.data.main.temp_min);
+  currentTempMin.innerHTML = temperatureCelsiusLow;
 
   let currentWindSpeed = document.querySelector("#wind");
   currentWindSpeed.innerHTML = Math.round(response.data.wind.speed);
+
+  let currentHumidity = document.querySelector("#humidity");
+  currentHumidity.innerHTML = response.data.main.humidity;
 
   function convertTimestamptoTime(unixTimestamp) {
     return moment.unix(unixTimestamp).format("HH:mm");
