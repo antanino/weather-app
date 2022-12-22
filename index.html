@@ -38,7 +38,7 @@
   </head>
   <body>
     <div class="container my-container">
-      <!-- First row header------------------------------------------------------------------->
+      <!-- First row header (Current city and search bar)------------------------------------------------------------------->
       <div class="row">
         <div class="col-6">
           <h1>--</h1>
@@ -74,11 +74,11 @@
           </div>
         </div>
       </div>
-      <!-- Second row----------------------------------------------------------------------------- -->
+      <!-- Second row (Current date and time)----------------------------------------------------------------------------- -->
       <div class="row">
         <h5 class="current-date" id="current-date">--</h5>
       </div>
-      <!-- Third row------------------------------------------------------------------------------ -->
+      <!-- Third row (Current weather)------------------------------------------------------------------------------ -->
       <div class="row mb-4">
         <div class="col-3">
           <span class="current-weather-pic"
@@ -110,49 +110,17 @@
           <strong id="sunset">--</strong><br />Sunset
         </div>
       </div>
-      <!-- Forth row-------------------------------------------------------------------------------- -->
-      <div class="row">
-        <div class="col-sm-2">
-          <ul>
-            <li>Fri</li>
-            <li><i class="fa-solid fa-cloud-sun"></i></li>
-            <li>16º</li>
-          </ul>
-        </div>
-        <div class="col-sm-2">
-          <ul>
-            <li>Sat</li>
-            <li><i class="fa-solid fa-sun"></i></li>
-            <li>4º</li>
-          </ul>
-        </div>
-        <div class="col-sm-2">
-          <ul>
-            <li>Sun</li>
-            <li><i class="fa-solid fa-cloud-showers-heavy"></i></li>
-            <li>4º</li>
-          </ul>
-        </div>
-        <div class="col-sm-2">
-          <ul>
-            <li>Mon</li>
-            <li><i class="fa-solid fa-cloud-sun"></i></li>
-            <li>5º</li>
-          </ul>
-        </div>
-        <div class="col-sm-2">
-          <ul>
-            <li>Tue</li>
-            <li><i class="fa-solid fa-sun"></i></li>
-            <li>5º</li>
-          </ul>
-        </div>
-        <div class="col-sm-2">
-          <ul>
-            <li>Wed</li>
-            <li><i class="fa-solid fa-cloud-rain"></i></li>
-            <li>6º</li>
-          </ul>
+      <!-- Forth row (Forecast)-------------------------------------------------------------------------------- -->
+      <div class="weather-forecast">
+        <div class="row">
+          <div class="col-sm-2">
+            <div class="weather-forecast-date">Fri</div>
+            <i class="fa-solid fa-cloud-sun"></i>
+            <div class="weather-forecast-temp">
+              <span class="weather-forecast-temp-max">16º </span>
+              <span class="weather-forecast-temp-min"> 8°</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
