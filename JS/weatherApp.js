@@ -140,7 +140,15 @@ celsius.addEventListener("click", displayCelsiusTemp);
 
 // Weather elements
 
+function getForecast(coordinates) {
+  let apiKey = "866a208a73eeff02182218e9441647a1";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayForecast);
+}
+
 function showTemperature(response) {
+  console.log(response);
   let h1 = document.querySelector("h1");
   h1.innerHTML = response.data.name;
 
@@ -189,10 +197,11 @@ function showTemperature(response) {
 
   let currentSunrise = document.querySelector("#sunrise");
   currentSunrise.innerHTML = convertTimestamptoTime(response.data.sys.sunrise);
+
+  getForecast(response.data.coord);
 }
 
 searchCity("New York");
-displayForecast();
 
 // Current geolocation
 
@@ -215,7 +224,8 @@ geolocation.addEventListener("click", useCurrentPosition);
 
 // Forecast
 
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data.daily);
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
