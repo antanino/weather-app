@@ -141,7 +141,6 @@ celsius.addEventListener("click", displayCelsiusTemp);
 // Weather elements
 
 function showTemperature(response) {
-  console.log(response.data);
   let h1 = document.querySelector("h1");
   h1.innerHTML = response.data.name;
 
@@ -193,6 +192,7 @@ function showTemperature(response) {
 }
 
 searchCity("New York");
+displayForecast();
 
 // Current geolocation
 
@@ -212,3 +212,27 @@ function useCurrentPosition(event) {
 
 let geolocation = document.querySelector("#geolocation");
 geolocation.addEventListener("click", useCurrentPosition);
+
+// Forecast
+
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+  let days = ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col-sm-2">
+        <div class="weather-forecast-date">${day}</div>
+        <i class="fa-solid fa-cloud-sun"></i>
+        <div class="weather-forecast-temp">
+          <span class="weather-forecast-temp-max">16º </span>
+          <span class="weather-forecast-temp-min"> 8°</span>
+        </div>
+      </div>`;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
