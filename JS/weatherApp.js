@@ -243,17 +243,21 @@ function displayForecast(response) {
       forecastHTML =
         forecastHTML +
         `<div class="col-sm-2">
-        <div class="weather-forecast-date">${formatDay(forecastDay.dt)}</div>
-        <i class="${weatherIcons[forecastDay.weather[0].icon]}"></i>
-        <div class="weather-forecast-temp">
-          <span class="weather-forecast-temp-max">${Math.round(
-            forecastDay.temp.max
-          )}° </span>
-          <span class="weather-forecast-temp-min"> ${Math.round(
-            forecastDay.temp.min
-          )}°</span>
-        </div>
-      </div>`;
+          <div class="weather-forecast-day-container">
+            <div class="weather-forecast-date">${formatDay(
+              forecastDay.dt
+            )}</div>
+            <i class="${weatherIcons[forecastDay.weather[0].icon]}"></i>
+            <div class="weather-forecast-temp">
+              <span class="weather-forecast-temp-max">${Math.round(
+                forecastDay.temp.max
+              )}° </span>
+              <span class="weather-forecast-temp-min"> ${Math.round(
+                forecastDay.temp.min
+              )}°</span>
+            </div>
+          </div>
+        </div>`;
     }
   });
 
