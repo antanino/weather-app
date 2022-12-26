@@ -224,23 +224,37 @@ geolocation.addEventListener("click", useCurrentPosition);
 
 // Forecast
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
 function displayForecast(response) {
-  console.log(response.data.daily);
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
+  console.log(response.data);
 
   let forecastHTML = `<div class="row">`;
-  let days = ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="col-sm-2">
-        <div class="weather-forecast-date">${day}</div>
-        <i class="fa-solid fa-cloud-sun"></i>
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="col-sm-2">
+        <div class="weather-forecast-date">${formatDay(forecastDay.dt)}</div>
+        <i class="${weatherIcons[forecastDay.weather[0].icon]}"></i>
         <div class="weather-forecast-temp">
-          <span class="weather-forecast-temp-max">16º </span>
-          <span class="weather-forecast-temp-min"> 8°</span>
+          <span class="weather-forecast-temp-max">${Math.round(
+            forecastDay.temp.max
+          )}° </span>
+          <span class="weather-forecast-temp-min"> ${Math.round(
+            forecastDay.temp.min
+          )}°</span>
         </div>
       </div>`;
+    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
