@@ -90,7 +90,7 @@ function submitCity(event) {
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", submitCity);
 
-// Metric/Imperial system conversion
+// Conversion
 
 function cToF(celsius) {
   let fahrenheit = Math.round((celsius * 9) / 5 + 32);
@@ -106,6 +106,14 @@ function displayFahrenheitTemp(event) {
   let tempElementLow = document.querySelector("#low-temp");
   tempElementLow.innerHTML = cToF(temperatureCelsiusLow);
 
+  for (var i = 0; i <= 5; i++) {
+    let forecastTempMin = document.querySelector(`#forecast-temp-min-${i}`);
+    forecastTempMin.innerHTML = Math.round(cToF(forecastTemp[i].min));
+
+    let forecastTempMax = document.querySelector(`#forecast-temp-max-${i}`);
+    forecastTempMax.innerHTML = Math.round(cToF(forecastTemp[i].max));
+  }
+
   let fahrenheitElement = document.querySelector("#fahrenheit a");
   fahrenheitElement.classList.add("active-temperature");
   let celsiusElement = document.querySelector("#celsius a");
@@ -118,6 +126,7 @@ fahr.addEventListener("click", displayFahrenheitTemp);
 let temperatureC = null;
 let temperatureCelsiusHigh = null;
 let temperatureCelsiusLow = null;
+let forecastTemp = [];
 
 function displayCelsiusTemp(event) {
   let tempElement = document.querySelector("#temp-digits");
@@ -128,6 +137,14 @@ function displayCelsiusTemp(event) {
 
   let tempElementLow = document.querySelector("#low-temp");
   tempElementLow.innerHTML = temperatureCelsiusLow;
+
+  for (var i = 0; i <= 5; i++) {
+    let forecastTempMin = document.querySelector(`#forecast-temp-min-${i}`);
+    forecastTempMin.innerHTML = Math.round(forecastTemp[i].min);
+
+    let forecastTempMax = document.querySelector(`#forecast-temp-max-${i}`);
+    forecastTempMax.innerHTML = Math.round(forecastTemp[i].max);
+  }
 
   let celsiusElement = document.querySelector("#celsius a");
   celsiusElement.classList.add("active-temperature");
@@ -143,12 +160,11 @@ celsius.addEventListener("click", displayCelsiusTemp);
 function getForecast(coordinates) {
   let apiKey = "866a208a73eeff02182218e9441647a1";
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
-  console.log(apiUrl);
+
   axios.get(apiUrl).then(displayForecast);
 }
 
 function showTemperature(response) {
-  console.log(response);
   let h1 = document.querySelector("h1");
   h1.innerHTML = response.data.name;
 
@@ -235,11 +251,14 @@ function formatDay(timestamp) {
 function displayForecast(response) {
   let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
-  console.log(response.data);
 
   let forecastHTML = `<div class="row">`;
   forecast.forEach(function (forecastDay, index) {
     if (index < 6) {
+      forecastTemp[index] = {
+        min: forecastDay.temp.min,
+        max: forecastDay.temp.max,
+      };
       forecastHTML =
         forecastHTML +
         `<div class="col-sm-2">
@@ -249,12 +268,12 @@ function displayForecast(response) {
             )}</div>
             <i class="${weatherIcons[forecastDay.weather[0].icon]}"></i>
             <div class="weather-forecast-temp">
-              <span class="weather-forecast-temp-max">${Math.round(
-                forecastDay.temp.max
-              )}° </span>
-              <span class="weather-forecast-temp-min"> ${Math.round(
-                forecastDay.temp.min
-              )}°</span>
+              <span class="weather-forecast-temp-max"><span id="forecast-temp-max-${index}">${Math.round(
+          forecastDay.temp.max
+        )}</span>° </span>
+              <span class="weather-forecast-temp-min"><span id="forecast-temp-min-${index}">${Math.round(
+          forecastDay.temp.min
+        )}</span>°</span>
             </div>
           </div>
         </div>`;
