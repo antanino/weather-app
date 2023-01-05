@@ -45,7 +45,7 @@ p:first-letter {
 .weather-forecast-day-container {
   padding: 5px;
   border-radius: 10px;
-  background-color: #cfd2cf;
+  border-style: ridge;
 }
 
 .weather-forecast-date {
@@ -67,7 +67,14 @@ p:first-letter {
   max-width: 700px;
   margin-top: 20px;
   padding: 15px;
-  background-color: #f2f2f2;
+  background-image: linear-gradient(
+    to bottom,
+    #edf1f8,
+    #d6e5eb,
+    #c2d9d8,
+    #b6cbbf,
+    #b4bba5
+  );
   border-radius: 10px;
 }
 
