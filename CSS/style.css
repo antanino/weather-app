@@ -46,7 +46,7 @@ p:first-letter {
   padding: 5px;
   border-radius: 10px;
   border-style: ridge;
-  border-width: 1.5px;
+  border-width: 2px;
 }
 
 .weather-forecast-date {
